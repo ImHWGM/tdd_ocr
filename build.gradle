@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.enmad'
+version = '0.0.1-SNAPSHOT'
+apply plugin: 'war'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // https://mvnrepository.com/artifact/com.google.cloud/google-cloud-vision
+    implementation group: 'com.google.cloud', name: 'google-cloud-vision', version: '3.39.0'
+
+    // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+    implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.0.2'
+
+    // entity, dto, vo 간 자동 변환
+    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.5.Final'
+
+    // entity, dto, vo 간 자동 변환
+    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.5.Final'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

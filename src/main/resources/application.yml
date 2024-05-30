@@ -1,0 +1,31 @@
+# ?? DataSource
+spring:
+  application:
+    name: tdd_ocr
+  datasource:
+    ocrs:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://localhost:3306/event_ocr?characterEncoding=UTF-8
+      username: ocr-local
+      password: ocr1234
+    hysms:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://localhost:3306/hysms?characterEncoding=UTF-8
+      username: ocr-local
+      password: ocr1234
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        hbm2ddl:
+          auto: none
+
+# MyBatis
+mybatis:
+  type-aliases-package: com.enmad.ocr.google.domain, com.enmad.ocr.hysms.domain
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+server:
+  port: 15318
